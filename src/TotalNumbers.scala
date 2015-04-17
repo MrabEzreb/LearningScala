@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 object TotalNumbers extends App {
 
   override def main(args: Array[String]): Unit = {
@@ -5,7 +7,8 @@ object TotalNumbers extends App {
     funcCoding()
     numbersmap()
     val rvb = new ResultValueBundle[Int](true, 50)
-    print(rvb.toString())
+    println(rvb.toString())
+    println(factorial(10))
   }
   def impCoding(): Unit = {
     var list = List(1,2,3,4,5,6)
@@ -23,5 +26,16 @@ object TotalNumbers extends App {
   def numbersmap(): Unit = {
     val numbers = List(1,2,3,4,5,6)
     println(numbers.map { e => e * 2 })
+  }
+  def factorial(number: Int): BigInt = {
+    @tailrec
+    def factorialImpl(number: Int, factorial: BigInt): BigInt = {
+      if(number == 1) {
+        factorial
+      } else {
+        factorialImpl(number-1, factorial*number)
+      }
+    }
+    factorialImpl(number, BigInt(1))
   }
 }
